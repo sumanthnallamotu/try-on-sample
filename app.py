@@ -5,6 +5,8 @@ import warnings
 import streamlit as st
 from openai import OpenAI
 
+openai_key = st.secrets["openai"]["api_key"]
+
 warnings.filterwarnings("ignore")
 
 # ---------------------- Helpers ----------------------
@@ -106,7 +108,7 @@ if st.button("Generate Try-On"):
         st.stop()
 
     with st.spinner("Analyzing and generating…"):
-        client = OpenAI()
+        client = OpenAI(api_key=openai_key)
 
         # Save temp files
         person_img_path = write_temp_file(model_file)
